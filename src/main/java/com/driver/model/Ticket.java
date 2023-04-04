@@ -62,6 +62,7 @@ public class Ticket {
     }
 
     public void setToStation(Station toStation) {
+
         this.toStation = toStation;
     }
 
@@ -69,26 +70,32 @@ public class Ticket {
     }
 
     public int getTicketId() {
+
         return ticketId;
     }
 
     public void setTicketId(int ticketId) {
+
         this.ticketId = ticketId;
     }
 
     public List<Passenger> getPassengersList() {
+
         return passengersList;
     }
 
     public void setPassengersList(List<Passenger> passengersList) {
+
         this.passengersList = passengersList;
     }
 
     public Train getTrain() {
+
         return train;
     }
 
     public void setTrain(Train train) {
+
         this.train = train;
     }
 

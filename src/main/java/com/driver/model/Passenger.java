@@ -40,34 +40,42 @@ public class Passenger {
     }
 
     public int getPassengerId() {
+
         return passengerId;
     }
 
-    public void setPassengerId(int passengerId) {
+    public void setPassengerId(int passengerId)
+    {
         this.passengerId = passengerId;
     }
 
     public String getName() {
+
         return name;
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 
     public int getAge() {
+
         return age;
     }
 
     public void setAge(int age) {
+
         this.age = age;
     }
 
     public List<Ticket> getBookedTickets() {
+
         return bookedTickets;
     }
 
     public void setBookedTickets(List<Ticket> bookedTickets) {
+
         this.bookedTickets = bookedTickets;
     }
 }
