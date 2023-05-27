@@ -39,12 +39,34 @@ public class TicketService {
         //Incase the train doesn't pass through the requested stations
         //throw new Exception("Invalid stations");
         //Save the bookedTickets in the train Object
-        //Also in the passenger Entity change the attribute bookedTickets by using the attribute bookingPersonId.
-       //And the end return the ticketId that has come from db
+        // Also in the passenger Entity change the attribute bookedTickets by using the attribute bookingPersonId.
+        //And the end return the ticketId that has come from db
 
 
+        Train train = trainRepository.getOne(bookTicketEntryDto.getTrainId());
 
-       return null;
+        int bookedTicket = 0;
+        for(Ticket ticket : train.getBookedTickets()){
+            bookedTicket += ticket.getPassengersList().size();
+        }
+
+        int leftTicket = train.getNoOfSeats() - bookedTicket;
+        if(leftTicket < bookTicketEntryDto.getNoOfSeats()) throw new Exception("Less tickets are available");
+
+        String[] route = train.getRoute().split(",");
+        boolean isFromStation = false;
+        boolean isToStation = false;
+        for(int i=0; i<route.length; i++){
+            if(route[i].equals(bookTicketEntryDto.getFromStation())) isFromStation = true;
+            if(route[i].equals(bookTicketEntryDto.getToStation()))  isToStation = true;
+        }
+
+        if(!isFromStation || !isToStation) throw new Exception("Invalid stations");
+
+        train = trainRepository.save(train);
+        Ticket updatedTicket = train.getBookedTickets().get(train.getBookedTickets().size()-1);
+
+        return updatedTicket.getTicketId();
 
     }
 }
